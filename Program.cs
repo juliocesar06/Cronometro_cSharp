@@ -11,6 +11,7 @@ namespace Cronometro
         {
 
             int v = Menu();
+            preStart();
             Start(v);
             fim();
 
@@ -22,17 +23,33 @@ namespace Cronometro
             string linha;
             Console.Clear();
 
-            System.Console.WriteLine("m/ minutos  e s/ segundos");
+            System.Console.WriteLine("-s/ segundos");
+            System.Console.WriteLine("-m/ minutos");
+            System.Console.WriteLine("x sair");
             linha = Console.ReadLine();
             char tipo = char.Parse(linha);
+            int v = 0;
 
-            System.Console.WriteLine("coloque o valor do cronometro :");
-            linha = Console.ReadLine();
-            int v = Int32.Parse(linha);
+
 
             if (tipo == 'm' || tipo == 'M')
             {
+                System.Console.WriteLine("coloque o valor do cronometro :");
+                linha = Console.ReadLine();
+                v = Int32.Parse(linha);
                 v = v * 60;
+            }
+
+            else if (tipo == 'x' || tipo == 'X')
+            {
+                v = 0;
+            }
+            else
+            {
+                System.Console.WriteLine("coloque o valor do cronometro :");
+                linha = Console.ReadLine();
+                v = Int32.Parse(linha);
+
             }
             return v;
 
@@ -50,7 +67,7 @@ namespace Cronometro
             int Time = time;
             int time_atual = 0;
 
-            while (Time != time_atual)
+            while (Time != time_atual && Time != 0)
             {
                 Console.Clear();
                 time_atual++;
@@ -58,6 +75,17 @@ namespace Cronometro
                 Thread.Sleep(1000);
 
             }
+        }
+
+        static void preStart()
+        {
+            Console.Clear();
+            System.Console.WriteLine("Ready...");
+            Thread.Sleep(1000);
+            System.Console.WriteLine("Set...");
+            Thread.Sleep(1000);
+            System.Console.WriteLine("Go...");
+            Thread.Sleep(1000);
         }
 
     }
